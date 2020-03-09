@@ -11,3 +11,6 @@ steps:
     - --filename=./manifests
     - --location=europe-west2-c
     - --cluster=uk-gke-cec
+  - name: 'gcr.io/cloud-builders/gcloud'
+    args: 
+    - 'gcloud container clusters update uk-gke-cec --zone europe-west2-c --no-enable-master-authorized-networks'
