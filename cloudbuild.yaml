@@ -3,5 +3,4 @@ steps:
   entrypoint: 'bash'
   args:
   - '-c'
-  - | 
-  SHELL_IP="$$(curl checkip.amazonaws.com)" && gcloud container clusters update uk-gke-cec --zone europe-west2-c --enable-master-authorized-networks --master-authorized-networks "$$SHELL_IP"/32
+  - 'SHELL_IP="$$(curl checkip.amazonaws.com)" && gcloud container clusters update uk-gke-cec --zone europe-west2-c --enable-master-authorized-networks --master-authorized-networks "$$SHELL_IP"/32'
