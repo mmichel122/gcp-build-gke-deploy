@@ -4,5 +4,5 @@ steps:
   args:
   - run
   - --filename=./manifests
-  - --location=europe-west2
+  - --location=europe-west2-c
   - --cluster=uk-gke-cec
