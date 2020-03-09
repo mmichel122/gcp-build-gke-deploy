@@ -1,0 +1,34 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: web-frontend
+spec:
+  schedule: '00 02 * * MON'
+  successfulJobsHistoryLimit: 10
+  failedJobsHistoryLimit: 10
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          affinity:
+            nodeAffinity:
+              requiredDuringSchedulingIgnoredDuringExecution:
+                nodeSelectorTerms:
+                  -
+                    matchExpressions:
+                      -
+                        key: pool-type
+                        operator: In
+                        values:
+                          - worker
+          containers:
+            -
+              name: web-frontend
+              image: 'nginx:latest'
+          tolerations:
+            -
+              key: "scripts"
+              operator: "Equal"
+              value: "true"
+              effect: "NoSchedule"
+          restartPolicy: OnFailure
