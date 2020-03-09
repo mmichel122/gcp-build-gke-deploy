@@ -1,6 +1,10 @@
 steps:
 - name: 'gcr.io/cloud-builders/gcloud'
-  args: ['container', 'clusters', 'update', 'uk-gke-cec', '--zone', 'europe-west2-c', '--enable-master-authorized-networks', '--master-authorized-networks', '(dig +short myip.opendns.com @resolver1.opendns.com)']
+  args: ['container', 'clusters', 'update', 'uk-gke-cec', '--zone', 'europe-west2-c', '--enable-master-authorized-networks', '--master-authorized-networks', '${_SUB_VALUE}']
+substitutions:
+    _SUB_VALUE: (dig +short myip.opendns.com @resolver1.opendns.com)
+options:
+    substitution_option: 'ALLOW_LOOSE'
 - name: "gcr.io/cloud-builders/gke-deploy:stable"
   id: 'Run deploy'
   args:
