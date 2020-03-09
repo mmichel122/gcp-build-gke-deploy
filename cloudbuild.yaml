@@ -1,10 +1,10 @@
 steps:
 - name: 'gcr.io/cloud-builders/gcloud'
-  args: ['container', 'clusters', 'update', 'uk-gke-cec', '--zone', 'europe-west2-c', '--enable-master-authorized-networks', '--master-authorized-networks', '${_SUB_VALUE}']
-  substitutions:
-      _SUB_VALUE: 0.0.0./0
-  options:
-      substitution_option: 'ALLOW_LOOSE'
+  entrypoint: 'bash'
+  args:
+  - '-c'
+  - | 
+    (curl checkip.amazonaws.com) && gcloud container clusters update uk-gke-cec --zone europe-west2-c --enable-master-authorized-networks --master-authorized-networks $_
 - name: "gcr.io/cloud-builders/gke-deploy:stable"
   id: 'Run deploy'
   args:
