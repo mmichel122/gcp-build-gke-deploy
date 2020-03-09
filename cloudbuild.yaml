@@ -3,8 +3,8 @@ steps:
     entrypoint: 'bash'
     args:
     - '-c'
-    - 'SHELL_IP="$$(curl checkip.amazonaws.com)" && gcloud container clusters update uk-gke-cec --zone europe-west2-c --enable-master-authorized-networks --master-authorized-networks "$$SHELL_IP"/32'
-- name: "gcr.io/cloud-builders/gke-deploy:stable"
+    - 'SHELL_IP="$$(curl -s checkip.amazonaws.com)" && gcloud container clusters update uk-gke-cec --zone europe-west2-c --enable-master-authorized-networks --master-authorized-networks "$$SHELL_IP"/32'
+- name: 'gcr.io/cloud-builders/gke-deploy:stable'
   id: 'Run deploy'
   args:
   - run
