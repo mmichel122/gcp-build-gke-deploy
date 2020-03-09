@@ -5,4 +5,4 @@ steps:
   - run
   - --filename=./manifests
   - --location=europe-west2
-  - --cluster=dev-istio-cluster
+  - --cluster=uk-gke-cec
